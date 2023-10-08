@@ -51,7 +51,24 @@ body {
   gap: 5px;
   flex-direction: column;
 }
-.app form input {
+.app__date span {
+  color: var(--light-red);
+  font-style: italic;
+  font-size: 14px;
+  display: none;
+}
+
+.app__date span.show {
+  display: block;
+}
+
+label {
+  color: var(--smokey-grey);
+}
+label.invalid {
+  color: var(--light-red);
+}
+input {
   font-size: 32px;
   width: 150px;
   color: var(--off-black);
@@ -63,8 +80,11 @@ body {
   border: 1px solid var(--light-grey);
 }
 
-.app form input:focus {
+input:focus {
   border: 1px solid var(--purple);
+}
+input.invalid {
+  border: 1px solid var(--light-red);
 }
 .submit {
   position: relative;
