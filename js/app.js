@@ -17,11 +17,48 @@ function getError(e) {
       labels.forEach((label) => {
         label.classList.add("invalid");
       });
-      messages.forEach(message => {
-        message.classList.add('show')
-      })
+      messages.forEach((message) => {
+        message.classList.add("show");
+      });
     }
   });
+
+  e.target.reset()
 }
 
 form.addEventListener("submit", getError);
+
+// getting error of inputs
+
+let now = new Date();
+let currentYear = now.getFullYear();
+
+inputs.forEach((input) => {
+  input.addEventListener("input", (e) => {
+    if (e.currentTarget.name == "year") {
+      if (Number(e.target.value) > currentYear) {
+        messages.forEach((message) => {
+          if (message.previousElementSibling.name == "year") {
+            message.classList.add("show");
+            message.textContent = "must be in the past";
+            if (e.target.value == "") {
+              message.classList.add("hide");
+              message.classList.remove("show");
+            }
+          }
+        });
+      }
+    }
+
+  });
+});
+
+
+/**
+ * 
+ * year input if it is empty, invalid message should be hidden
+ * text regEx
+ * day and month validation
+ * 
+ * should focus on display section
+ */

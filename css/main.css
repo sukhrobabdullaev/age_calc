@@ -48,6 +48,7 @@ body {
 }
 .app__date {
   display: flex;
+  align-items: center;
   gap: 5px;
   flex-direction: column;
 }
@@ -59,6 +60,9 @@ body {
 }
 
 .app__date span.show {
+  display: block;
+}
+.app__date span.hide {
   display: block;
 }
 
