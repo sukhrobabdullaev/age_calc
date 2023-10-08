@@ -21,7 +21,11 @@ body {
   align-items: center;
   height: 100vh;
 }
-
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
 .wrapper {
   -webkit-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
@@ -50,7 +54,7 @@ body {
 .app form input {
   font-size: 32px;
   width: 150px;
-  color: var(--smokey-grey);
+  color: var(--off-black);
   padding: 10px;
   font-weight: 700;
   border-radius: 10px;
@@ -59,6 +63,9 @@ body {
   border: 1px solid var(--light-grey);
 }
 
+.app form input:focus {
+  border: 1px solid var(--purple);
+}
 .submit {
   position: relative;
   margin: 30px 0;
@@ -76,13 +83,53 @@ body {
   outline: none;
   border: none;
   padding: 10px;
+  cursor: pointer;
+  transition: background ease 0.3s;
 }
-
+.submit button:hover,
+.submit button:active {
+  background: var(--off-black);
+}
 /* app display */
 
-.app__display h2{
-    font-size: 60px;
+.app__display h2 {
+  font-size: 70px;
 }
 .app__display span {
-    color: var(--purple);
+  color: var(--purple);
+}
+
+/* mobile resposnive */
+
+@media screen and (max-width: 425px) {
+  .container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .wrapper {
+    padding: 15px;
+  }
+  .app form {
+    gap: 10px;
+  }
+  .app__dates {
+    gap: 10px;
+  }
+  .app form input {
+    font-size: 18px;
+    width: 100px;
+  }
+  .submit {
+    width: 100%;
+  }
+  .submit button {
+    width: 80px;
+    padding: 7px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+  .app__display h2 {
+    font-size: 40px;
+  }
 }
