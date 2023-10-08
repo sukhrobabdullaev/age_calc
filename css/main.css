@@ -1,0 +1,88 @@
+:root {
+  --purple: hsl(259, 100%, 65%);
+  --light-red: hsl(0, 100%, 67%);
+
+  --white: hsl(0, 0%, 100%);
+  --Off-white: hsl(0, 0%, 94%);
+  --light-grey: hsl(0, 0%, 86%);
+  --smokey-grey: hsl(0, 1%, 44%);
+  --off-black: hsl(0, 0%, 8%);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.wrapper {
+  -webkit-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
+  padding: 30px;
+  border-radius: 20px;
+  border-bottom-right-radius: 80px;
+}
+.app form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  gap: 20px;
+  color: var(--smokey-grey);
+}
+.app__dates {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.app__date {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.app form input {
+  font-size: 32px;
+  width: 150px;
+  color: var(--smokey-grey);
+  padding: 10px;
+  font-weight: 700;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  border: 1px solid var(--light-grey);
+}
+
+.submit {
+  position: relative;
+  margin: 30px 0;
+  width: 630px;
+}
+.line {
+  border: 1px solid var(--light-grey);
+}
+.submit button {
+  position: absolute;
+  right: 0;
+  top: -23px;
+  border-radius: 50%;
+  background-color: var(--purple);
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+
+/* app display */
+
+.app__display h2{
+    font-size: 60px;
+}
+.app__display span {
+    color: var(--purple);
+}
