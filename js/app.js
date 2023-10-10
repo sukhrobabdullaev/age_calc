@@ -23,7 +23,7 @@ function getError(e) {
     }
   });
 
-  e.target.reset()
+  e.target.reset();
 }
 
 form.addEventListener("submit", getError);
@@ -32,33 +32,39 @@ form.addEventListener("submit", getError);
 
 let now = new Date();
 let currentYear = now.getFullYear();
-
+// console.log(now.ge);
 inputs.forEach((input) => {
   input.addEventListener("input", (e) => {
+    // year
     if (e.currentTarget.name == "year") {
       if (Number(e.target.value) > currentYear) {
         messages.forEach((message) => {
-          if (message.previousElementSibling.name == "year") {
+          if (
+            message.previousElementSibling.name == "year" &&
+            e.target.value.length
+          ) {
             message.classList.add("show");
             message.textContent = "must be in the past";
-            if (e.target.value == "") {
-              message.classList.add("hide");
-              message.classList.remove("show");
-            }
           }
         });
       }
     }
+    // month
+    const regex = /^(?:[1-9]|1[0-2])$/;
 
+    if (e.currentTarget.name == "month") {
+      if (!regex.test(e.target.value)) {
+        console.log("sss");
+      }
+    }
   });
 });
 
-
 /**
- * 
+ *
  * year input if it is empty, invalid message should be hidden
  * text regEx
  * day and month validation
- * 
+ *
  * should focus on display section
  */

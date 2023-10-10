@@ -63,7 +63,7 @@ body {
   display: block;
 }
 .app__date span.hide {
-  display: block;
+  display: none;
 }
 
 label {
