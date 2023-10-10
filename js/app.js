@@ -1,70 +1,145 @@
-let form = document.querySelector("#form");
+// input elements...
+const dayIn = document.getElementById("dayIn");
+const monthIn = document.getElementById("monthIn");
+const yearIn = document.getElementById("yearIn");
 
-// let day = document.querySelector("#day");
-// let month = document.querySelector("#month");
-// let year = document.querySelector("#year");
-let inputs = document.querySelectorAll("input");
-let labels = document.querySelectorAll("label");
-let messages = document.querySelectorAll(".app__date span");
+// output els
+const dayOut = document.getElementById("dayOut");
+const monthOut = document.getElementById("monthOut");
+const yearOut = document.getElementById("yearOut");
 
-// getting error
-function getError(e) {
-  // prevent submit button default behaviour
-  e.preventDefault();
-  inputs.forEach((input) => {
-    if (input.value == "") {
-      input.classList.add("invalid");
-      labels.forEach((label) => {
-        label.classList.add("invalid");
-      });
-      messages.forEach((message) => {
-        message.classList.add("show");
-      });
-    }
-  });
+const calculateBtn = document.getElementById("calculateBtn");
+const errorStyle = "0.5px solid var(--Light-red)";
 
-  e.target.reset();
-}
+// Calculate Button
+calculateBtn.addEventListener("click", () => {
+  // input values
+  const D = dayIn.value;
+  const M = monthIn.value;
+  const Y = yearIn.value;
+  // birthday expression
+  const birthday = `${Y}-${M}-${D}`;
 
-form.addEventListener("submit", getError);
+  if (validateDay() && validateMonth() && validateYear()) {
+    console.log("Done");
+  } else {
+    return;
+  }
 
-// getting error of inputs
+  // Age Calculation
+  let years = new Date().getFullYear() - new Date(birthday).getFullYear();
+  let months = new Date().getMonth() - new Date(birthday).getMonth();
+  let days = new Date().getDate() - Number(D);
+  if (months < 0) {
+    years = years - 1;
+    months = months + 12;
+  }
 
-let now = new Date();
-let currentYear = now.getFullYear();
-// console.log(now.ge);
-inputs.forEach((input) => {
-  input.addEventListener("input", (e) => {
-    // year
-    if (e.currentTarget.name == "year") {
-      if (Number(e.target.value) > currentYear) {
-        messages.forEach((message) => {
-          if (
-            message.previousElementSibling.name == "year" &&
-            e.target.value.length
-          ) {
-            message.classList.add("show");
-            message.textContent = "must be in the past";
-          }
-        });
-      }
-    }
-    // month
-    const regex = /^(?:[1-9]|1[0-2])$/;
+  if (days < 0) {
+    days += getNoOfDays(Y, M - 1);
+  }
 
-    if (e.currentTarget.name == "month") {
-      if (!regex.test(e.target.value)) {
-        console.log("sss");
-      }
-    }
-  });
+  // Display Values
+  dayOut.innerText = days;
+  monthOut.innerText = months;
+  yearOut.innerText = years;
 });
 
-/**
- *
- * year input if it is empty, invalid message should be hidden
- * text regEx
- * day and month validation
- *
- * should focus on display section
- */
+// Get Number of Days in a particular months
+function getNoOfDays(y, m) {
+  return new Date(y, m, 0).getDate();
+}
+
+/*================ on Blur Validation =========================*/
+
+// On Blur day validation
+dayIn.addEventListener("blur", () => {
+  validateDay();
+});
+
+// Validate Day function
+const validateDay = () => {
+  // input values
+  const D = dayIn.value;
+  const M = monthIn.value;
+  const Y = yearIn.value;
+  // if it is empty
+  if (D == "") {
+    showMessage(dayIn, "This field is required", errorStyle);
+    return false;
+  } else if (!validDay(Y, M, D)) {
+    showMessage(dayIn, "Must be a valid day", errorStyle);
+    return false;
+  } else {
+    showMessage(dayIn, "", "");
+    return true;
+  }
+};
+
+// On Blur month validation
+monthIn.addEventListener("blur", () => {
+  validateMonth();
+});
+
+const validateMonth = () => {
+  const M = monthIn.value;
+  if (M == "") {
+    showMessage(monthIn, "This field is required", errorStyle);
+    return false;
+  } else if (!validMonth(M)) {
+    showMessage(monthIn, "Must be a valid month", errorStyle);
+    return false;
+  } else {
+    showMessage(monthIn, "", "");
+    return true;
+  }
+};
+
+// on Blur Year validate
+yearIn.addEventListener("blur", () => {
+  validateYear();
+});
+
+const validateYear = () => {
+  const Y = yearIn.value;
+  const M = monthIn.value;
+  const D = dayIn.value;
+  if (Y == "") {
+    showMessage(yearIn, "This field is required", errorStyle);
+    return false;
+  } else if (!validYear(Y, M, D)) {
+    showMessage(yearIn, "Must be in past", errorStyle);
+    return false;
+  } else {
+    showMessage(yearIn, "", "");
+    return true;
+  }
+};
+
+// Validate Day
+function validDay(y, m, d) {
+  if (d > getNoOfDays(y, m) || d < 1) return false;
+  return true;
+}
+
+// validate Month
+function validMonth(m) {
+  if (m > 12 || m < 1) return false;
+  return true;
+}
+
+// Validate Year
+function validYear(y, m, d) {
+  const secondDate = new Date();
+  const firstDate = new Date(`${y}-${m}-${d}`);
+  if (firstDate.setHours(0, 0, 0, 0) <= secondDate.setHours(0, 0, 0, 0)) {
+    return true;
+  }
+  return false;
+}
+
+// Display Message
+function showMessage(elem, msg, border) {
+  elem.style.border = border;
+  elem.nextElementSibling.innerText = msg;
+}

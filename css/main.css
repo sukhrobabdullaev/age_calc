@@ -1,159 +1,143 @@
-:root {
-  --purple: hsl(259, 100%, 65%);
-  --light-red: hsl(0, 100%, 67%);
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
 
-  --white: hsl(0, 0%, 100%);
+:root {
+  --Purple: hsl(259, 100%, 65%);
+  --Light-red: hsl(0, 100%, 67%);
+  --White: hsl(0, 0%, 100%);
   --Off-white: hsl(0, 0%, 94%);
-  --light-grey: hsl(0, 0%, 86%);
-  --smokey-grey: hsl(0, 1%, 44%);
-  --off-black: hsl(0, 0%, 8%);
+  --Light-grey: hsl(0, 0%, 86%);
+  --Smokey-grey: hsl(0, 1%, 44%);
+  --Off-black: hsl(0, 0%, 8%);
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: "Poppins";
+  background: var(--Light-grey);
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-.container {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-.wrapper {
-  -webkit-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
-  -moz-box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
-  box-shadow: -1px 2px 8px 0px rgba(34, 60, 80, 0.2);
-  padding: 30px;
+
+.content {
+  background: var(--White);
+  width: 750px;
+  padding: 50px;
   border-radius: 20px;
-  border-bottom-right-radius: 80px;
-}
-.app form {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-  gap: 20px;
-  color: var(--smokey-grey);
-}
-.app__dates {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.app__date {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  flex-direction: column;
-}
-.app__date span {
-  color: var(--light-red);
-  font-style: italic;
-  font-size: 14px;
-  display: none;
+  border-bottom-right-radius: 40%;
+  position: relative;
 }
 
-.app__date span.show {
-  display: block;
-}
-.app__date span.hide {
-  display: none;
+.input {
+  display: flex;
+  margin-bottom: 35px;
 }
 
-label {
-  color: var(--smokey-grey);
-}
-label.invalid {
-  color: var(--light-red);
-}
 input {
   font-size: 32px;
   width: 150px;
-  color: var(--off-black);
   padding: 10px;
-  font-weight: 700;
+  margin-top: 10px;
+  margin-right: 20px;
   border-radius: 10px;
+  border: 0.5px solid var(--Light-grey);
   outline: none;
+  letter-spacing: 2px;
+  caret-color: var(--Purple);
+}
+
+h6 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--Light-red);
+}
+
+hr {
   border: none;
-  border: 1px solid var(--light-grey);
+  height: 1px;
+  background: var(--Light-grey);
+}
+
+button {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background: var(--Purple);
+  right: 50px;
+  margin-top: -32px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--Off-black);
 }
 
 input:focus {
-  border: 1px solid var(--purple);
-}
-input.invalid {
-  border: 1px solid var(--light-red);
-}
-.submit {
-  position: relative;
-  margin: 30px 0;
-  width: 630px;
-}
-.line {
-  border: 1px solid var(--light-grey);
-}
-.submit button {
-  position: absolute;
-  right: 0;
-  top: -23px;
-  border-radius: 50%;
-  background-color: var(--purple);
-  outline: none;
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  transition: background ease 0.3s;
-}
-.submit button:hover,
-.submit button:active {
-  background: var(--off-black);
-}
-/* app display */
-
-.app__display h2 {
-  font-size: 70px;
-}
-.app__display span {
-  color: var(--purple);
+  border: 0.5px solid var(--Purple);
 }
 
-/* mobile resposnive */
+p.error {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--Light-red);
+  font-style: italic;
+  margin: 5px 0;
+}
 
-@media screen and (max-width: 425px) {
-  .container {
+.result h1 {
+  font-size: 60px;
+  font-style: italic;
+}
+
+.result span {
+  color: var(--Purple);
+}
+
+@media only screen and (max-width: 500px) {
+  .content {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 450px;
   }
-  .wrapper {
-    padding: 15px;
+  .input {
+    margin-bottom: 40px;
   }
-  .app form {
-    gap: 10px;
-  }
-  .app__dates {
-    gap: 10px;
-  }
-  .app form input {
+  input {
     font-size: 18px;
-    width: 100px;
-  }
-  .submit {
-    width: 100%;
-  }
-  .submit button {
     width: 80px;
-    padding: 7px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    margin-right: 10px;
+    border-radius: 5px;
   }
-  .app__display h2 {
-    font-size: 40px;
+  .content {
+    background: var(--White);
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    border-bottom-right-radius: 30%;
+    position: relative;
   }
-}
+  .result h1 {
+    font-size: 45px;
+    font-style: italic;
+  }
+  p.error {
+    font-size: 10px;
+  }
+  button {
+    right: 40%;
+  }
+  .result {
+    margin-top: 40px;
+  }
+} 

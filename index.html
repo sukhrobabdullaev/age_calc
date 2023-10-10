@@ -9,42 +9,45 @@
   </head>
   <body>
     <!-- Day DD Month MM Year YYYY -- years -- months -- days -->
-    <div class="wrapper">
-      <div class="container">
-        <div class="app">
-          <form id="form">
-            <div class="app__dates">
-              <div class="app__date">
-                <label for="day">DAY</label>
-                <input type="text" id="day" name="day" placeholder="DD" />
-                <span>this field is required</span>
-              </div>
-              <div class="app__date">
-                <label for="month">MONTH</label>
-                <input type="number"  id="month" name="month" placeholder="MM" />
-                <span>this field is required</span>
-              </div>
-              <div class="app__date">
-                <label for="year">YEAR</label>
-                <input type="text" id="year" name="year" placeholder="YY" />
-                <span>this field is required</span>
-              </div>
-            </div>
-            <div class="submit">
-              <div class="line"></div>
-              <button type="submit">
-                <img src="./img/icon-arrow.svg" alt="icon" />
-              </button>
-            </div>
-          </form>
-          <div class="app__display">
-            <h2><span>--</span>years</h2>
-            <h2><span>--</span>months</h2>
-            <h2><span>--</span>days</h2>
+    <!-- Container -->
+    <main class="container" role="main">
+      <div class="content">
+        <!-- Input Date of Birth -->
+        <div class="input">
+          <!-- Day -->
+          <div>
+            <h6>Day</h6>
+            <input type="text" placeholder="DD" id="dayIn" />
+            <p class="error"></p>
+          </div>
+          <!-- Month -->
+          <div>
+            <h6>Month</h6>
+            <input type="text" placeholder="MM" id="monthIn" />
+            <p class="error"></p>
+          </div>
+          <!-- Year -->
+          <div>
+            <h6>Year</h6>
+            <input type="text" placeholder="YYYY" id="yearIn" />
+            <p class="error"></p>
           </div>
         </div>
+        <!-- Button -->
+        <hr />
+        <button id="calculateBtn">
+          <img src="./img/icon-arrow.svg" alt="" />
+        </button>
+
+        <!-- Result -->
+        <div class="result">
+          <h1><span id="yearOut">--</span> years</h1>
+          <h1><span id="monthOut">--</span> months</h1>
+          <h1><span id="dayOut">--</span> days</h1>
+        </div>
       </div>
-    </div>
+    </main>
+
     <script src="./js/app.js"></script>
   </body>
 </html>
